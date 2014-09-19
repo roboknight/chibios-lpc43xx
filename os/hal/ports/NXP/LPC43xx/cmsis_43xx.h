@@ -29,8 +29,8 @@
  * this code.
  */
 
-#ifndef __CMSIS_43XX_M0_H_
-#define __CMSIS_43XX_M0_H_
+#ifndef __CMSIS_43XX_M4_H_
+#define __CMSIS_43XX_M4_H_
 
 #ifndef __CMSIS_H_
 #error "cmsis_43xx.h should not be included directly use cmsis.h instead"
@@ -66,7 +66,7 @@ extern "C" {
 
 #define __CM4_REV              0x0001		/*!< Cortex-M4 Core Revision               */
 #define __MPU_PRESENT             1			/*!< MPU present or not                    */
-#define __NVIC_PRIO_BITS          3			/*!< Number of Bits used for Priority Levels */
+#define __NVIC_PRIO_BITS          4			/*!< Number of Bits used for Priority Levels */
 #define __Vendor_SysTickConfig    0			/*!< Set to 1 if different SysTick Config is used */
 #define __FPU_PRESENT             1			/*!< FPU present or not                    */
 
@@ -164,4 +164,4 @@ typedef LPC43XX_IRQn_Type IRQn_Type;
 }
 #endif
 
-#endif /* ifndef __CMSIS_43XX_M0_H_ */
+#endif /* ifndef __CMSIS_43XX_M4_H_ */

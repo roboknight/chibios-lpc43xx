@@ -1,5 +1,5 @@
 /*
- * @brief LPC11xx selective CMSIS inclusion file
+ * @brief LPC43xx selective CMSIS inclusion file
  *
  * Copyright(C) NXP Semiconductors, 2012
  * All rights reserved.
