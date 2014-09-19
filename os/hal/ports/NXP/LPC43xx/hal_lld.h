@@ -26,6 +26,7 @@
 #define _HAL_LLD_H_
 
 #include "nxp_registry.h"
+#include "chip.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
