@@ -22,4 +22,4 @@ MEMORY
 
 }
 
-include rules.ld
+INCLUDE rules.ld

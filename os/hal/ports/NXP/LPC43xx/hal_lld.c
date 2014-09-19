@@ -89,6 +89,16 @@ void __early_init(void) {
  *
  * @notapi
  */
+void lpc_clock_init(void) {
+}
+
+/**
+ * @brief   Low level HAL driver initialization.
+ * @note    All the involved constants come from the file @p board.h.
+ * @note    This function should be invoked just after the system reset.
+ *
+ * @notapi
+ */
 void hal_lld_init(void) {
 }
 

@@ -79,13 +79,13 @@ CHIBIOS = ../../..
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/boards/NGX_LPC4330_XPLORER/board.mk
 include $(CHIBIOS)/os/hal/ports/NXP/LPC43xx/platform.mk
-include $(CHIBIOS)/os/hal/osal/rt/osal.mk
-include $(CHIBIOS)/os/rt/rt.mk
-include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC
-#include $(CHIBIOS)/os/nil/nil.mk
-#include $(CHIBIOS)/os/hal/osal/nil/osal.mk
-#include $(CHIBIOS)/os/nil/ports/ARMCMx/compilers/GCC/mk/port_stm32f0xx.mk
+include $(CHIBIOS)/os/hal/osal/nil/osal.mk
+include $(CHIBIOS)/os/nil/nil.mk
+include $(CHIBIOS)/os/nil/ports/ARMCMx/compilers/GCC/mk/port_lpc43xx.mk
 #include $(CHIBIOS)/test/rt/test.mk
+#include $(CHIBIOS)/os/hal/osal/rt/osal.mk
+#include $(CHIBIOS)/os/rt/rt.mk
+#include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC
 
 # Define linker script file here
 LDSCRIPT= $(PORTLD)/LPC43XX.ld
@@ -183,7 +183,7 @@ CPPWARN = -Wall -Wextra
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS =
+UDEFS = -DCORE_M4
 
 # Define ASM defines here
 UADEFS =

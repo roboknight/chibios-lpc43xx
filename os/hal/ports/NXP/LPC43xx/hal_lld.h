@@ -151,6 +151,7 @@ typedef uint32_t halrtcnt_t;
 extern "C" {
 #endif
   void hal_lld_init(void);
+  void lpc_clock_init(void);
 #ifdef __cplusplus
 }
 #endif

@@ -43,18 +43,5 @@ __inline void __early_init(void) {
  */
 __inline void boardInit(void) {
 
-  /* LCD */
-  LPC_IOCON->TMS_PIO0_12  = 0x91;       /* LCD_EN: GPIO - pull-up     */
-  LPC_IOCON->TDO_PIO0_13  = 0x81;       /* LCD_RW: GPIO - No pull-up  */
-  LPC_IOCON->TRST_PIO0_14 = 0x81;       /* LCD_RS: GPIO - No pull-up  */
-
-  /* USART */
-  LPC_IOCON->PIO0_18 = 0x81;            /* RDX: RXD - No pull-up      */
-  LPC_IOCON->PIO0_19 = 0x81;            /* TDX: TXD - No pull-up      */
-
-  /* Test LEDs */
-  LPC_IOCON->PIO0_22 = 0x80;            /* LED_TEST1: GPIO - No pull-up */
-  LPC_IOCON->PIO0_23 = 0x80;            /* LED_TEST2: GPIO - No pull-up */
-
 }
 

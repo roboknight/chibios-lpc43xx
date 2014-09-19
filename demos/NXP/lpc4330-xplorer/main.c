@@ -14,51 +14,48 @@
     limitations under the License.
 */
 
-#include "ch.h"
-//#include "hal.h"
-//#include "test.h"
+#include "nil.h"
+#include "hal.h"
 
-#if 0
-#define BOTH_BUTTONS (PAL_PORT_BIT(PA_BUTTON1) | PAL_PORT_BIT(PA_BUTTON2))
+//#define BOTH_BUTTONS (PAL_PORT_BIT(PA_BUTTON1) | PAL_PORT_BIT(PA_BUTTON2))
 
 /*
  * Red LEDs blinker thread, times are in milliseconds.
  */
-static WORKING_AREA(waThread1, 128);
-static msg_t Thread1(void *arg) {
+THD_WORKING_AREA(waThread1, 128);
+THD_FUNCTION(Thread1, arg) {
 
   (void)arg;
-  chRegSetThreadName("blinker1");
   while (TRUE) {
-    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED2));
+//    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED2));
     chThdSleepMilliseconds(200);
-    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
+//    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
     chThdSleepMilliseconds(800);
-    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED1));
+//    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED1));
     chThdSleepMilliseconds(200);
-    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
+//    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
     chThdSleepMilliseconds(800);
   }
-  return 0;
 }
 
 /*
  * Yellow LED blinker thread, times are in milliseconds.
  */
-static WORKING_AREA(waThread2, 128);
-static msg_t Thread2(void *arg) {
+THD_WORKING_AREA(waThread2, 128);
+THD_FUNCTION(Thread2, arg) {
 
   (void)arg;
-  chRegSetThreadName("blinker2");
   while (TRUE) {
-    palClearPad(IOPORT1, PA_LEDUSB);
+//    palClearPad(IOPORT1, PA_LEDUSB);
     chThdSleepMilliseconds(200);
-    palSetPad(IOPORT1, PA_LEDUSB);
+//    palSetPad(IOPORT1, PA_LEDUSB);
     chThdSleepMilliseconds(300);
   }
-  return 0;
 }
-#endif
+
+THD_TABLE_BEGIN
+	THD_TABLE_ENTRY(waThread1,"blinker1",Thread1,NULL)
+THD_TABLE_END
 
 /*
  * Application entry point.
@@ -72,7 +69,7 @@ int main(void) {
    * - Kernel initialization, the main() function becomes a thread and the
    *   RTOS is active.
    */
-//  halInit();
+  halInit();
   chSysInit();
 
   /*
