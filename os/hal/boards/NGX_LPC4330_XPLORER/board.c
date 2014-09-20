@@ -16,6 +16,8 @@
 
 #include "hal.h"
 
+#include "board.h"
+
 /*****************************************************************************
  * Private types/enumerations/variables
  ****************************************************************************/
@@ -90,9 +92,10 @@ const uint32_t ExtRateIn = 0;
  *          This variable is used by the HAL when initializing the PAL driver.
  */
 #if HAL_USE_PAL || defined(__DOXYGEN__)
-const PALConfig pal_default_config = {
+ROMCONST PALConfig pal_default_config[] = {
   {VAL_GPIO0DATA, VAL_GPIO0DIR},
-  {VAL_GPIO1DATA, VAL_GPIO1DIR}
+  {VAL_GPIO1DATA, VAL_GPIO1DIR},
+  {END_CFG, END_CFG}			/* This is required */
 };
 #endif
 
@@ -190,4 +193,9 @@ __inline void boardInit(void) {
 	nvicDisableVector(M0SUB_IRQn);
 	nvicDisableVector(C_CAN0_IRQn);
 	nvicDisableVector(QEI_IRQn);
+	//Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, LED_PORT, BLUE_LED);
+  	//Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, LED_PORT, GREEN_LED);
+
+	//Chip_GPIO_SetPinOutLow(LPC_GPIO_PORT, 1, 11);
+	//Chip_GPIO_SetPinOutLow(LPC_GPIO_PORT, 1, 12);
 }

@@ -37,6 +37,20 @@
  */
  
 /* GPIO Port0 */
+#define VAL_GPIO0DIR			0x00000000
+#define VAL_GPIO0DATA			0x00000000
+
+/* GPIO Port1 */
+#define LED_PORT				GPIO_PORT1
+#define GREEN_LED				PIN11
+#define BLUE_LED				PIN12
+/*
+ *  Pins set in VAL_GPIO1DIR will be set to output.
+ *  Otherwise, they will be set to input.
+ */
+#define VAL_GPIO1DIR			PAL_PORT_BIT(BLUE_LED)| \
+								PAL_PORT_BIT(GREEN_LED)
+#define	VAL_GPIO1DATA			0x00000000
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus

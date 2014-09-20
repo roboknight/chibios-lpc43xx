@@ -40,8 +40,9 @@ NXP_SRCS       = adc_18xx_43xx.c \
 		 uart_18xx_43xx.c \
 		 wwdt_18xx_43xx.c
 
-LLD_SRCS = 	 hal_lld.c \
-	   	 st_lld.c
+LLD_SRCS = 	hal_lld.c \
+			pal_lld.c \
+	   	 	st_lld.c
 
 DRV_SRCS = $(NXP_SRCS) $(LLD_SRCS)
 

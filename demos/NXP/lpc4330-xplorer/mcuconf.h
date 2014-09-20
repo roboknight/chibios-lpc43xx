@@ -22,7 +22,7 @@
 
 #define LPC43XX_BUSCLK_FREQUENCY 0
 
-#define HAL_USE_PAL	FALSE
+#define HAL_USE_PAL		TRUE
 #define HAL_USE_SERIAL	FALSE
 
 /* Select the MCU clocking mode below by enabling the appropriate block. */

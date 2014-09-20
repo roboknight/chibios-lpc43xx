@@ -15,16 +15,14 @@
 */
 
 /**
- * @file    PLATFORM/st_lld.c
- * @brief   ST Driver subsystem low level driver code.
+ * @file    LPC43xx/pal_lld.c
+ * @brief   PAL Driver subsystem low level driver code.
  *
- * @addtogroup ST
+ * @addtogroup PAL
  * @{
  */
 
 #include "hal.h"
-
-#if (OSAL_ST_MODE != OSAL_ST_MODE_NONE) || defined(__DOXYGEN__)
 
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
@@ -50,45 +48,25 @@
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if (OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC) || defined(__DOXYGEN__)
-/**
- * @brief   System Timer vector.
- * @details This interrupt is used for system tick in periodic mode.
- *
- * @isr
- */
-OSAL_IRQ_HANDLER(SysTick_Handler) {
-
-  OSAL_IRQ_PROLOGUE();
-
-  osalSysLockFromISR();
-  osalOsTimerHandlerI();
-  //Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, 1, 11);	
-  osalSysUnlockFromISR();
-
-  OSAL_IRQ_EPILOGUE();
-}
-#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
-
 /*===========================================================================*/
 /* Driver exported functions.                                                */
 /*===========================================================================*/
 
 /**
- * @brief   Low level ST driver initialization.
+ * @brief   Low level PAL driver initialization.
  *
  * @notapi
  */
-void st_lld_init(void) {
+void pal_lld_init(const PALConfig *config) {
+	PALConfig *i = config;
+	uint8_t port = 0;
 
-#if (OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC) || defined(__DOXYGEN__)
-		SystemCoreClockUpdate();
-        /* Enable and setup SysTick Timer at a periodic rate */
-        SysTick_Config(SystemCoreClock / OSAL_ST_FREQUENCY);
-#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
-
+	while((i->data != END_CFG) && (i->direction != END_CFG)) {
+		LPC_GPIO_PORT->CLR[port] = ~(i->data);
+		LPC_GPIO_PORT->SET[port] = i->data;
+		LPC_GPIO_PORT->DIR[port]  |= i->direction;
+		i = &config[++port];
+	}
 }
-
-#endif /* OSAL_ST_MODE != OSAL_ST_MODE_NONE */
 
 /** @} */

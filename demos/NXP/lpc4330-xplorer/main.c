@@ -17,19 +17,16 @@
 #include "nil.h"
 #include "hal.h"
 
-//#define BOTH_BUTTONS (PAL_PORT_BIT(PA_BUTTON1) | PAL_PORT_BIT(PA_BUTTON2))
-
 /*
- * Red LEDs blinker thread, times are in milliseconds.
+ * Blue LEDs blinker thread, times are in milliseconds.
  */
 THD_WORKING_AREA(waThread1, 128);
 THD_FUNCTION(Thread1, arg) {
 
   (void)arg;
-  Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 1, 12);
 
   while (TRUE) {
-	Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, 1, 12);
+	palTogglePad(LED_PORT, BLUE_LED);
 //    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED2));
 //    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
     chThdSleepMilliseconds(800);
@@ -44,15 +41,16 @@ THD_FUNCTION(Thread2, arg) {
 
   (void)arg;
   while (TRUE) {
-//    palClearPad(IOPORT1, PA_LEDUSB);
+	palSetPad(LED_PORT, GREEN_LED);
     chThdSleepMilliseconds(200);
-//    palSetPad(IOPORT1, PA_LEDUSB);
+	palClearPad(LED_PORT, GREEN_LED);
     chThdSleepMilliseconds(300);
   }
 }
 
 THD_TABLE_BEGIN
 	THD_TABLE_ENTRY(waThread1,"blinker1",Thread1,NULL)
+	THD_TABLE_ENTRY(waThread2,"blinker2",Thread2,NULL)
 THD_TABLE_END
 
 /*
@@ -71,22 +69,11 @@ int main(void) {
   chSysInit();
 
   /*
-   * Do some simple setup before we do anything else.
-   * This will be moved into a driver.
-   */
-
-  /*
-   * Activates the serial driver 1 using the driver default configuration.
-   */
-//  sdStart(&SD1, NULL);
-
-  /*
    * Normal main() thread activity, in this demo it does nothing except
    * sleeping in a loop and check the buttons state and run test procedure
    * or print "Hello World!" on serial driver 1.
    */
   while (TRUE) {
-    __WFI();
   }
   return 0;
 }
