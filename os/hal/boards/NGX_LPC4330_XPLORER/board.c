@@ -81,7 +81,7 @@ STATIC const PINMUX_GRP_T pinmuxing[] = {
 };
 
 
-const uint32_t OscRateIn = 12000000;
+const uint32_t OscRateIn = SYSOSCCLK;
 const uint32_t ExtRateIn = 0;
 
 /**
@@ -139,4 +139,55 @@ __inline void boardInit(void) {
 		Chip_Clock_SetBaseClock(InitClkStates[i].clk, InitClkStates[i].clkin,
 								InitClkStates[i].autoblock_enab, InitClkStates[i].powerdn);
 	}
+
+	/*
+	 * Start with all board devices disabled
+	 */
+	nvicDisableVector(WWDT_IRQn);
+	nvicDisableVector(DAC_IRQn);
+	nvicDisableVector(M0APP_IRQn);
+	nvicDisableVector(DMA_IRQn);
+	nvicDisableVector(ETHERNET_IRQn);
+	nvicDisableVector(SDIO_IRQn);
+	nvicDisableVector(LCD_IRQn);
+	nvicDisableVector(USB0_IRQn);
+	nvicDisableVector(USB1_IRQn);
+	nvicDisableVector(SCT_IRQn);
+	nvicDisableVector(RITIMER_IRQn);
+	nvicDisableVector(TIMER0_IRQn);
+	nvicDisableVector(TIMER1_IRQn);
+	nvicDisableVector(TIMER2_IRQn);
+	nvicDisableVector(TIMER3_IRQn);
+	nvicDisableVector(MCPWM_IRQn);
+	nvicDisableVector(ADC0_IRQn);
+	nvicDisableVector(I2C0_IRQn);
+	nvicDisableVector(I2C1_IRQn);
+	nvicDisableVector(SPI_INT_IRQn);
+	nvicDisableVector(ADC1_IRQn);
+	nvicDisableVector(SSP0_IRQn);
+	nvicDisableVector(SSP1_IRQn);
+	nvicDisableVector(USART0_IRQn);
+	nvicDisableVector(USART1_IRQn);
+	nvicDisableVector(USART2_IRQn);
+	nvicDisableVector(USART3_IRQn);
+	nvicDisableVector(I2S0_IRQn);
+	nvicDisableVector(I2S1_IRQn);
+	nvicDisableVector(SGPIO_INT_IRQn);
+	nvicDisableVector(PIN_INT0_IRQn);
+	nvicDisableVector(PIN_INT1_IRQn);
+	nvicDisableVector(PIN_INT2_IRQn);
+	nvicDisableVector(PIN_INT3_IRQn);
+	nvicDisableVector(PIN_INT4_IRQn);
+	nvicDisableVector(PIN_INT6_IRQn);
+	nvicDisableVector(PIN_INT7_IRQn);
+	nvicDisableVector(GINT0_IRQn);
+	nvicDisableVector(GINT1_IRQn);
+	nvicDisableVector(EVENTROUTER_IRQn);
+	nvicDisableVector(C_CAN1_IRQn);
+	nvicDisableVector(ADCHS_IRQn);
+	nvicDisableVector(ATIMER_IRQn);
+	nvicDisableVector(RTC_IRQn);
+	nvicDisableVector(M0SUB_IRQn);
+	nvicDisableVector(C_CAN0_IRQn);
+	nvicDisableVector(QEI_IRQn);
 }

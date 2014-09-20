@@ -26,13 +26,11 @@ THD_WORKING_AREA(waThread1, 128);
 THD_FUNCTION(Thread1, arg) {
 
   (void)arg;
+  Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, 1, 12);
+
   while (TRUE) {
+	Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, 1, 12);
 //    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED2));
-    chThdSleepMilliseconds(200);
-//    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
-    chThdSleepMilliseconds(800);
-//    palClearPort(IOPORT1, PAL_PORT_BIT(PA_LED1));
-    chThdSleepMilliseconds(200);
 //    palSetPort(IOPORT1, PAL_PORT_BIT(PA_LED1) | PAL_PORT_BIT(PA_LED2));
     chThdSleepMilliseconds(800);
   }
@@ -73,18 +71,14 @@ int main(void) {
   chSysInit();
 
   /*
+   * Do some simple setup before we do anything else.
+   * This will be moved into a driver.
+   */
+
+  /*
    * Activates the serial driver 1 using the driver default configuration.
    */
 //  sdStart(&SD1, NULL);
-
-  /*
-   * If a button is pressed during the reset then the blinking leds threads
-   * are not started in order to make accurate benchmarks.
-   */
-//  if ((palReadPort(IOPORT1) & BOTH_BUTTONS) == BOTH_BUTTONS) {
-//    chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
-//    chThdCreateStatic(waThread2, sizeof(waThread2), NORMALPRIO, Thread2, NULL);
-//  }
 
   /*
    * Normal main() thread activity, in this demo it does nothing except
@@ -92,11 +86,7 @@ int main(void) {
    * or print "Hello World!" on serial driver 1.
    */
   while (TRUE) {
-//    if (!palReadPad(IOPORT1, PA_BUTTON1))
-//      sdWrite(&SD1, (uint8_t *)"Hello World!\r\n", 14);
-//    if (!palReadPad(IOPORT1, PA_BUTTON2))
-//      TestThread(&SD1);
-    chThdSleepMilliseconds(500);
+    __WFI();
   }
   return 0;
 }

@@ -9,7 +9,7 @@
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KGIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
 */
@@ -63,7 +63,7 @@
  *          option defines the maximum amount of time allowed for
  *          timeouts.
  */
-#define NIL_CFG_ST_FREQUENCY                50000
+#define NIL_CFG_ST_FREQUENCY                1000
 
 /**
  * @brief   Time delta constant for the tick-less mode.
@@ -73,7 +73,7 @@
  *          The value one is not valid, timeouts are rounded up to
  *          this value.
  */
-#define NIL_CFG_ST_TIMEDELTA                2
+#define NIL_CFG_ST_TIMEDELTA                0
 
 /** @} */
 

@@ -27,6 +27,7 @@
 
 #include "nxp_registry.h"
 #include "chip.h"
+#include "isr_map_lld.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */

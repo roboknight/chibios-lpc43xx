@@ -50,6 +50,26 @@
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
+#if (OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC) || defined(__DOXYGEN__)
+/**
+ * @brief   System Timer vector.
+ * @details This interrupt is used for system tick in periodic mode.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SysTick_Handler) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  osalSysLockFromISR();
+  osalOsTimerHandlerI();
+  Chip_GPIO_SetPinToggle(LPC_GPIO_PORT, 1, 11);	
+  osalSysUnlockFromISR();
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
+
 /*===========================================================================*/
 /* Driver exported functions.                                                */
 /*===========================================================================*/
@@ -60,6 +80,13 @@
  * @notapi
  */
 void st_lld_init(void) {
+
+#if (OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC) || defined(__DOXYGEN__)
+		SystemCoreClockUpdate();
+        /* Enable and setup SysTick Timer at a periodic rate */
+        SysTick_Config(SystemCoreClock / OSAL_ST_FREQUENCY);
+#endif /* OSAL_ST_MODE == OSAL_ST_MODE_PERIODIC */
+
 }
 
 #endif /* OSAL_ST_MODE != OSAL_ST_MODE_NONE */
