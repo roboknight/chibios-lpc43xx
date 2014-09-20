@@ -75,7 +75,7 @@ endif
 PROJECT = ch
 
 # Imported source files and paths
-CHIBIOS = ../../..
+CHIBIOS = ../../../..
 include $(CHIBIOS)/os/hal/hal.mk
 include $(CHIBIOS)/os/hal/boards/NGX_LPC4330_XPLORER/board.mk
 include $(CHIBIOS)/os/hal/ports/NXP/LPC43xx/platform.mk
