@@ -41,8 +41,8 @@
 #define		DAC_HANDLER				_V(40)
 #define		M0APP_HANDLER			_V(44)
 #define		DMA_HANDLER				_V(48)
-#define		RESERVED1				_V(4C)
-#define		RESERVED2				_V(50)
+#define		RESERVED1				_V(4C)  /* Do not use */
+#define		RESERVED2				_V(50)  /* Do not use */
 #define		ETHERNET_HANDLER		_V(54)
 #define		SDIO_HANDLER			_V(58)
 #define		LCD_HANDLER				_V(5C)
@@ -68,7 +68,7 @@
 #define		USART3_HANDLER			_V(AC)
 #define		I2S0_HANDLER			_V(B0)
 #define		I2S1_HANDLER			_V(B4)
-#define		RESERVED4_HANDLER		_V(B8)
+#define		RESERVED4				_V(B8)  /* Do not use */
 #define		SGPIO_HANDLER			_V(BC)
 #define		PIN0_HANDLER			_V(C0)
 #define		PIN1_HANDLER			_V(C4)
@@ -82,11 +82,11 @@
 #define		GINT1_HANDLER			_V(E4)
 #define		EVENTROUTER_HANDLER		_V(E8)
 #define		C_CAN1_HANDLER			_V(EC)
-#define		RESERVED6_HANDLER		_V(F0)
+#define		RESERVED6				_V(F0)  /* Do not use */
 #define		ADCHS_HANDLER			_V(F4)
 #define		ATIMER_HANDLER			_V(F8)
 #define		RTC_HANDLER				_V(FC)
-#define		RESERVED8_HANDLER		_V(100)
+#define		RESERVED8				_V(100) /* Do not use */
 #define		WWDT_HANDLER			_V(104)
 #define		M0SUB_HANDLER			_V(108)
 #define		C_CAN0_HANDLER			_V(10C)
