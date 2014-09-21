@@ -87,6 +87,11 @@ typedef struct {
 	uint32_t Gu : 5;
 	uint32_t Bu : 5;
 	uint32_t Iu : 1;
+} LCD_PALETTE_ENTRY_internal;
+
+typedef union {
+	LCD_PALETTE_ENTRY_internal pe;
+	uint32_t pi;
 } LCD_PALETTE_ENTRY_T;
 
 /**
