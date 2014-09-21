@@ -14,16 +14,23 @@
     limitations under the License.
 */
 
+#ifndef _MCUCONF_H_
+#define _MCUCONF_H_
+
 #define LPC43XX_MCUCONF
 
 /*
- * HAL driver system settings.
+ * HAL driver options.
  */
 
+#define HAL_USE_PAL		TRUE
+#define HAL_USE_UART	TRUE
+/*
+ * System settings.
+ */
 #define LPC43XX_BUSCLK_FREQUENCY 0
 
-#define HAL_USE_PAL		TRUE
-#define HAL_USE_SERIAL	FALSE
-
 /* Select the MCU clocking mode below by enabling the appropriate block. */
+
+#endif /* _MCUCONF_H_ */
 
