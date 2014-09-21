@@ -132,7 +132,7 @@ extern "C" {
 #endif
   extern ROMCONST PALConfig pal_default_config[];
   
-  void pal_lld_init(const PALConfig *);
+  void pal_lld_init(void *);
 #ifdef __cplusplus
 }
 #endif
