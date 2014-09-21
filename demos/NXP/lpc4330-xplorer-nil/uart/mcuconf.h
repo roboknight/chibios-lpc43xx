@@ -24,7 +24,12 @@
  */
 
 #define HAL_USE_PAL		TRUE
+/*
+ * UART settings
+ */
 #define HAL_USE_UART	TRUE
+#define LPC43XX_UART_USE_USART0 TRUE
+
 /*
  * System settings.
  */

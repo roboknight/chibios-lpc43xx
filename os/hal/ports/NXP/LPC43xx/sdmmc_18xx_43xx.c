@@ -159,7 +159,7 @@ static uint32_t prv_get_bits(int32_t start, int32_t end, uint32_t *data)
 	uint32_t i = end >> 5;
 	uint32_t j = start & 0x1f;
 
-	if (i == (start >> 5)) {
+	if (i == ((uint32_t)start >> 5)) {
 		v = (data[i] >> j);
 	}
 	else {
@@ -483,12 +483,14 @@ uint32_t Chip_SDMMC_Acquire(LPC_SDMMC_T *pSDMMC, mci_card_struct *pcardinfo)
 /* Get the device size of SD/MMC card (after enumeration) */
 int32_t Chip_SDMMC_GetDeviceSize(LPC_SDMMC_T *pSDMMC)
 {
+	(void)pSDMMC;
 	return g_card_info->card_info.device_size;
 }
 
 /* Get the number of blocks in SD/MMC card (after enumeration) */
 int32_t Chip_SDMMC_GetDeviceBlocks(LPC_SDMMC_T *pSDMMC)
 {
+	(void)pSDMMC;
 	return g_card_info->card_info.blocknr;
 }
 
@@ -500,7 +502,7 @@ int32_t Chip_SDMMC_ReadBlocks(LPC_SDMMC_T *pSDMMC, void *buffer, int32_t start_b
 	int32_t index;
 
 	/* if card is not acquired return immediately */
-	if (( start_block < 0) || ( (start_block + num_blocks) > g_card_info->card_info.blocknr) ) {
+	if (( start_block < 0) || ( (uint32_t)(start_block + num_blocks) > g_card_info->card_info.blocknr) ) {
 		return 0;
 	}
 
@@ -547,7 +549,7 @@ int32_t Chip_SDMMC_WriteBlocks(LPC_SDMMC_T *pSDMMC, void *buffer, int32_t start_
 	int32_t index;
 
 	/* if card is not acquired return immediately */
-	if (( start_block < 0) || ( (start_block + num_blocks) > g_card_info->card_info.blocknr) ) {
+	if (( start_block < 0) || ( (uint32_t)(start_block + num_blocks) > g_card_info->card_info.blocknr) ) {
 		return 0;
 	}
 

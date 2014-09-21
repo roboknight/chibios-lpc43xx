@@ -447,10 +447,11 @@ STATIC INLINE uint32_t Chip_CCAN_GetValidMsg(LPC_CCAN_T *pCCAN)
  * @return	Nothing
  */
 STATIC INLINE void Chip_CCAN_ClearMsgIntPend(LPC_CCAN_T *pCCAN,
-											 CCAN_MSG_IF_T IFSel,
-											 uint8_t msgNum,
-											 CCAN_TRANSFER_DIR_T dir)
+					     CCAN_MSG_IF_T IFSel,
+					     uint8_t msgNum,
+					     CCAN_TRANSFER_DIR_T dir)
 {
+	(void)dir;
 	Chip_CCAN_TransferMsgObject(pCCAN, IFSel, CCAN_IF_CMDMSK_RD | CCAN_IF_CMDMSK_R_CLRINTPND, msgNum);
 }
 

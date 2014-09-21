@@ -443,7 +443,7 @@ int Chip_I2C_MasterTransfer(I2C_ID_T id, I2C_XFER_T *xfer)
 /* Master tx only */
 int Chip_I2C_MasterSend(I2C_ID_T id, uint8_t slaveAddr, const uint8_t *buff, uint8_t len)
 {
-	I2C_XFER_T xfer = {0};
+	I2C_XFER_T xfer = {0,0,0,0,0,0};
 	xfer.slaveAddr = slaveAddr;
 	xfer.txBuff = buff;
 	xfer.txSz = len;
@@ -456,7 +456,7 @@ int Chip_I2C_MasterSend(I2C_ID_T id, uint8_t slaveAddr, const uint8_t *buff, uin
  */
 int Chip_I2C_MasterCmdRead(I2C_ID_T id, uint8_t slaveAddr, uint8_t cmd, uint8_t *buff, int len)
 {
-	I2C_XFER_T xfer = {0};
+	I2C_XFER_T xfer = {0,0,0,0,0,0};
 	xfer.slaveAddr = slaveAddr;
 	xfer.txBuff = &cmd;
 	xfer.txSz = 1;
@@ -469,7 +469,7 @@ int Chip_I2C_MasterCmdRead(I2C_ID_T id, uint8_t slaveAddr, uint8_t cmd, uint8_t 
 /* Sequential master read */
 int Chip_I2C_MasterRead(I2C_ID_T id, uint8_t slaveAddr, uint8_t *buff, int len)
 {
-	I2C_XFER_T xfer = {0};
+	I2C_XFER_T xfer = {0,0,0,0,0,0};
 	xfer.slaveAddr = slaveAddr;
 	xfer.rxBuff = buff;
 	xfer.rxSz = len;

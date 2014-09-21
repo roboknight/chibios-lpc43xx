@@ -64,6 +64,7 @@ static const CRSDCEG_T powerSets[] = {
 /* Initialize the High speed ADC */
 void Chip_HSADC_Init(LPC_HSADC_T *pHSADC)
 {
+	(void)pHSADC;
 	/* Enable HSADC register clock */
 	Chip_Clock_EnableOpts(CLK_MX_ADCHS, true, true, 1);
 

@@ -116,6 +116,7 @@ void palWriteBus(IOBus *bus, ioportmask_t bits) {
  */
 void palSetBusMode(IOBus *bus, iomode_t mode) {
 
+  (void)mode;
   osalDbgCheck((bus != NULL) && (bus->offset < PAL_IOPORTS_WIDTH));
 
   palSetGroupMode(bus->portid, bus->mask, bus->offset, mode);

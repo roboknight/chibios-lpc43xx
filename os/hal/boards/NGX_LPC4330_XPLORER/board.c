@@ -99,6 +99,19 @@ ROMCONST PALConfig pal_default_config[] = {
 };
 #endif
 
+/**
+ * @brief   UART setup.
+ * @details UART ports static configuration as defined in @p board.h.
+ *          This variable is used by the HAL when initializing the PAL driver.
+ */
+ #if HAL_USE_UART || defined(__DOXYGEN__)
+ ROMCONST UARTConfig uart_default_config = {
+	B9600,								 /* Fix me: set reasonable baud rate */
+	1,									 /* Fix me: check priority */
+	(UART_LCR_WLEN8 | UART_LCR_SBS_1BIT) /* Default 8-N-1 */
+};
+#endif
+
 /*
  * Early initialization code.
  * This initialization must be performed just after stack setup and before
@@ -118,7 +131,7 @@ __inline void __early_init(void) {
  */
 __inline void boardInit(void) {
 
-	int i;
+	unsigned int i;
 
 	Chip_SetupCoreClock(CLKIN_CRYSTAL, MAX_CLOCK_FREQ, true);
 

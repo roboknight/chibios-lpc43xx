@@ -90,7 +90,7 @@ int RingBuffer_InsertMult(RINGBUFF_T *RingBuff, const void *data, int num)
 
 	/* Calculate the segment lengths */
 	cnt1 = cnt2 = RingBuffer_GetFree(RingBuff);
-	if (RB_INDH(RingBuff) + cnt1 >= RingBuff->count)
+	if ((RB_INDH(RingBuff) + cnt1) >= (uint32_t)RingBuff->count)
 		cnt1 = RingBuff->count - RB_INDH(RingBuff);
 	cnt2 -= cnt1;
 
@@ -142,7 +142,7 @@ int RingBuffer_PopMult(RINGBUFF_T *RingBuff, void *data, int num)
 
 	/* Calculate the segment lengths */
 	cnt1 = cnt2 = RingBuffer_GetCount(RingBuff);
-	if (RB_INDT(RingBuff) + cnt1 >= RingBuff->count)
+	if (RB_INDT(RingBuff) + cnt1 >= (uint32_t)RingBuff->count)
 		cnt1 = RingBuff->count - RB_INDT(RingBuff);
 	cnt2 -= cnt1;
 

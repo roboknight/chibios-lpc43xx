@@ -80,7 +80,7 @@ static const struct CLK_BASE_STATES InitClkStates[] = {
 /* Setup Chip Core clock */
 void Chip_SetupCoreClock(CHIP_CGU_CLKIN_T clkin, uint32_t core_freq, bool setbase)
 {
-	int i;
+	unsigned int i;
 	if (clkin == CLKIN_CRYSTAL) {
 		/* Switch main system clocking to crystal */
 		Chip_Clock_EnableCrystal();

@@ -96,6 +96,7 @@ static uint32_t Chip_Clock_GetDivRate(CHIP_CGU_CLKIN_T clock, CHIP_CGU_IDIV_T di
 	CHIP_CGU_CLKIN_T input;
 	uint32_t div;
 
+	(void)clock;
 	input = Chip_Clock_GetDividerSource(divider);
 	div = Chip_Clock_GetDividerDivisor(divider);
 	return Chip_Clock_GetClockInputHz(input) / (div + 1);

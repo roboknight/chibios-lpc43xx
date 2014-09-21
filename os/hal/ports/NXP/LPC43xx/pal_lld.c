@@ -58,14 +58,14 @@
  * @notapi
  */
 void pal_lld_init(const PALConfig *config) {
-	PALConfig *i = config;
+	PALConfig *i = (PALConfig *)config;
 	uint8_t port = 0;
 
 	while((i->data != END_CFG) && (i->direction != END_CFG)) {
 		LPC_GPIO_PORT->CLR[port] = ~(i->data);
 		LPC_GPIO_PORT->SET[port] = i->data;
 		LPC_GPIO_PORT->DIR[port]  |= i->direction;
-		i = &config[++port];
+		i = (PALConfig *)&config[++port];
 	}
 }
 
