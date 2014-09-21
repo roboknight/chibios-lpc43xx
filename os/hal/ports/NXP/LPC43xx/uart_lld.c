@@ -24,7 +24,12 @@
 
 #include "hal.h"
 
-#if (OSAL_ST_MODE != OSAL_ST_MODE_NONE) || defined(__DOXYGEN__)
+#if HAL_USE_UART || defined(__DOXYGEN__)
+
+#if !LPC43XX_UART_USE_USART0 && !LPC43XX_UART_USE_USART1 && \
+    !LPC43XX_UART_USE_USART2 && !LPC43XX_UART_USE_USART3 
+#error "LPC43XX_UART not chosen!"
+#endif
 
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
@@ -267,6 +272,6 @@ void uart_lld_init(void) {
 
 }
 
-#endif /* OSAL_ST_MODE != OSAL_ST_MODE_NONE */
+#endif /* HAL_USE_UART */
 
 /** @} */
