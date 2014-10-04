@@ -88,7 +88,11 @@ include $(CHIBIOS)/os/nil/ports/ARMCMx/compilers/GCC/mk/port_lpc43xx.mk
 #include $(CHIBIOS)/os/rt/ports/ARMCMx/compilers/GCC
 
 # Define linker script file here
-LDSCRIPT= $(PORTLD)/LPC43XX.ld
+ifeq ($(USE_FLASH_SCRIPT),)
+  LDSCRIPT= $(PORTLD)/LPC43XX-RAM.ld
+else
+  LDSCRIPT= $(PORTLD)/LPC43XX-ROM.ld
+endif
 
 # C sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
